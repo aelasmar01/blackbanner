@@ -5,4 +5,8 @@ extends Control
 
 
 func _ready() -> void:
-	EventBus.main_menu_entered.emit()
+	_event_bus().main_menu_entered.emit()
+
+
+func _event_bus() -> EventBusService:
+	return get_node("/root/EventBus") as EventBusService

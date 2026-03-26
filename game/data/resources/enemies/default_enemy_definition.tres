@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://game/data/resources/enemies/enemy_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+display_name = "Base Enemy"
+max_hp = 40.0
+move_speed = 90.0
+chase_range = 160.0
+attack_range = 20.0
+attack_cooldown = 0.8
+contact_damage = 10.0
+hit_reaction_duration = 0.12
+hit_reaction_speed = 120.0

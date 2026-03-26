@@ -17,3 +17,11 @@ signal profile_saved
 # --- Run lifecycle ---
 signal run_started
 signal run_ended
+
+# --- Combat ---
+signal player_damaged(damage_info: Damage)
+signal player_died
+
+# --- Rewards ---
+signal reward_draft_opened(candidates: Array[UpgradeDefinition])
+signal upgrade_selected(upgrade_id: String)

@@ -52,7 +52,7 @@ func save_profile(state: ProfileState) -> bool:
 		"profile"
 	)
 	if saved:
-		EventBus.profile_saved.emit()
+		_event_bus().profile_saved.emit()
 	return saved
 
 
@@ -100,8 +100,8 @@ func ensure_profile() -> void:
 		state = create_default_profile()
 		save_profile(state)
 
-	GameState.set_profile(state)
-	EventBus.profile_loaded.emit(state)
+	_game_state().set_profile(state)
+	_event_bus().profile_loaded.emit(state)
 
 
 func _read_save_file(path: String, label: String) -> Variant:
@@ -132,3 +132,11 @@ func _write_save_file(path: String, data: Dictionary, label: String) -> bool:
 	file.store_string(JSON.stringify(data, "\t"))
 	file.close()
 	return true
+
+
+func _event_bus() -> EventBusService:
+	return get_node("/root/EventBus") as EventBusService
+
+
+func _game_state() -> GameStateService:
+	return get_node("/root/GameState") as GameStateService

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://enemy_player_test_scene"]
+
+[ext_resource type="PackedScene" path="res://game/actors/player/player.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://game/actors/enemies/enemy_base.tscn" id="2"]
+
+[node name="EnemyPlayerTestScene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1")]
+position = Vector2(120, 80)
+
+[node name="Enemy" parent="." instance=ExtResource("2")]
+position = Vector2(56, 80)
+target_path = NodePath("../Player")

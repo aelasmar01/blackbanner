@@ -17,19 +17,19 @@ var run_active: bool = false
 
 
 func start_run() -> void:
-	var state: RunState = SaveManager.create_default_run()
+	var state: RunState = _save_manager().create_default_run()
 	state.started_at_unix = int(Time.get_unix_time_from_system())
 	state.is_active = true
 	set_run_state(state)
-	SaveManager.save_run(run_state)
-	EventBus.run_started.emit()
+	_save_manager().save_run(run_state)
+	_event_bus().run_started.emit()
 
 
 func end_run() -> void:
 	run_state = null
 	run_active = false
-	SaveManager.clear_run()
-	EventBus.run_ended.emit()
+	_save_manager().clear_run()
+	_event_bus().run_ended.emit()
 
 
 func set_run_state(state: RunState) -> void:
@@ -38,7 +38,7 @@ func set_run_state(state: RunState) -> void:
 
 
 func restore_run() -> bool:
-	var saved_state: RunState = SaveManager.load_run()
+	var saved_state: RunState = _save_manager().load_run()
 	if saved_state == null:
 		run_state = null
 		run_active = false
@@ -52,4 +52,12 @@ func save_active_run() -> bool:
 	if run_state == null:
 		return false
 
-	return SaveManager.save_run(run_state)
+	return _save_manager().save_run(run_state)
+
+
+func _event_bus() -> EventBusService:
+	return get_node("/root/EventBus") as EventBusService
+
+
+func _save_manager() -> SaveManagerService:
+	return get_node("/root/SaveManager") as SaveManagerService

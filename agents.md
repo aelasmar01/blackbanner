@@ -179,4 +179,3 @@ If an existing pattern is imperfect but consistent, follow the repo's current pa
 4. Clean architecture
 5. Tests and validation
 6. Documentation accuracy
-
